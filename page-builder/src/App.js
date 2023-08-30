@@ -1,24 +1,15 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
-import PageBuilder from "./Home/pageBuilder";
-import Preview from "./Home/preview";
-import JSONGenerator from "./Home/jsonGenerator";
+import { RouterProvider } from "react-router-dom";
+import Router from "./Routes";
+import Header from "./Home/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Router = createBrowserRouter([
-  {
-    path: "/",
-    element: <PageBuilder/>,
-  },
-  {
-    path: "/preview",
-    element: <Preview/>,
-  },
-  {
-    path: "/json-generator",
-    element: <JSONGenerator/>,
-  }
-]);
+function App(){
+  return (
+    <>
+      <Header/>
+      <RouterProvider router={Router} />
+    </>
+  )
+}
 
-export default Router;
+export default App;
