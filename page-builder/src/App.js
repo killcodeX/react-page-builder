@@ -4,6 +4,7 @@ import {
 import PageBuilder from "./Home/pageBuilder";
 import Preview from "./Home/preview";
 import JSONGenerator from "./Home/jsonGenerator";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Router = createBrowserRouter([
   {
