@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&family=Shrikhand&display=swap');
+
 body {
+  font-family: 'Roboto', sans-serif;
   position:relative;
+  background-color: #f8f9fa;
 }
 
 /* Header Component*/
@@ -7,6 +11,8 @@ body {
 .header{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -14,29 +20,32 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
   z-index: 800;
-  align-items: center;
   font-size: 16px;
   line-height: 24px;
-  height:50px;
-  background: hsla(0,0%,100%,0%);
+  height:4rem;
+  background: #fff;
+  border-bottom:1px solid #f2f2f5;
+  box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.2);
 }
 
-.header::before{
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-  background: hsla(0,0%,100%,95%);
-  pointer-events: none;
-  opacity: 0;
-  box-shadow: 0px 0px 10px hsla(0,0%,0%,10%);
-  content: " ";
-  display: block;
-  transition: all .2s cubic-bezier(.215,.61,.355,1);
+.header-left-side{
+  font-size:1.5rem;
+  font-weight: 700;
+}
+
+/* page builder */
+.page-builder{
+  margin-top:4rem;
 }
 
 /* Component List*/
+.component-list{
+  position: fixed;
+  left: 0rem;
+  width:inherit;
+  min-height: 100vh;
+  background-color: #fff;
+}
 .component-container {
   border-bottom:1px solid #f2f2f5;
   padding:10px;
@@ -53,4 +62,16 @@ body {
 
 .right-side-component-container:hover{
   cursor:pointer;
+}
+
+/* Component with Settings */
+
+.component-with-settings{
+  padding: 16px 0;
+  min-height:100vh;
+}
+
+.component-with-settings-header{
+  font-size: 1.3rem;
+  font-weight: 600;
 }
