@@ -1,19 +1,23 @@
+import { v4 as uuid } from 'uuid';
 import { VscSymbolConstant, VscSymbolEnum, VscBold } from "react-icons/vsc";
 
 export const components = [
     {
-        id:1,
+        id:uuid(),
         component:'Section',
+        layer:'section',
         icon:<VscSymbolConstant/>
     },
     {
-        id:2,
+        id:uuid(),
         component:'Sub Section',
+        layer:'sub-section',
         icon:<VscSymbolEnum/>
     },
     {
-        id:3,
+        id:uuid(),
         component:'Button',
+        layer:'button',
         icon:<VscBold/>
     }
 ]

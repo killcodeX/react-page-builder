@@ -5,7 +5,7 @@ function Header(){
         <header className='header'>
             <div className='header-left-side'>Page Builder</div>
             <div className='right-left-side'>
-                <button type="button" class="btn btn-dark">Preview</button>
+                <button type="button" className="btn btn-dark">Preview</button>
             </div>
         </header>
     )

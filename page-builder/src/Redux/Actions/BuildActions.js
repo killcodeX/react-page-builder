@@ -1,4 +1,4 @@
-import { GetAllComponents } from "./Constants";
+import { GetAllComponents, AddLayers } from "./Constants";
 
 
 export const getAllComponents = (components) => {
@@ -7,3 +7,10 @@ export const getAllComponents = (components) => {
     payload: components,
   };
 };
+
+export const addLayers = (layer) => {
+  return {
+    type: AddLayers,
+    payload: layer,
+  }
+}
