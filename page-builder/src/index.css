@@ -75,3 +75,7 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
 }
+
+.children{
+  padding-left: 20px;
+}

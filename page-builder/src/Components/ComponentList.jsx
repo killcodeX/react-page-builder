@@ -1,13 +1,19 @@
 import react from 'react';
 import { useDispatch } from "react-redux";
+import { v4 as uuid } from 'uuid';
 import { VscAdd } from "react-icons/vsc";
 import { components } from "../Data/Components";
-import { addLayers } from "../Redux/Actions/BuildActions";
+import { addLayers, addSection, activeSection } from "../Redux/Actions/BuildActions";
 
 function ComponentList(){
     const dispatch = useDispatch()
     const handleComponentAdd = (component, id) =>{
-        dispatch(addLayers({component, id}))
+        if(component === 'section'){
+            dispatch(addSection({component, id, layer:[]}))
+            dispatch(activeSection(id))
+        }else{
+            dispatch(addLayers({component, id}))
+        }
     }
     return (
         <div className='component-list'>
@@ -22,7 +28,7 @@ function ComponentList(){
                                     <div className='component-container-label'>{item.component}</div>
                                 </div>
                                 <div className='right-side-component-container cursor-pointer' 
-                                    onClick={() => handleComponentAdd(item.layer, item.id)}>
+                                    onClick={() => handleComponentAdd(item.layer, uuid())}>
                                     <VscAdd/>
                                 </div>
                             </div>

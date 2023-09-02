@@ -3,9 +3,19 @@ import { useSelector } from "react-redux";
 import Accordion from 'react-bootstrap/Accordion';
 
 function LayersResolver({layer}){
+    console.log("this is layer -->", layer)
     return (
         <div className='layer-resolver-elements my-2'>
             {resolver(layer)}
+            {
+                layer?.layer?.length > 0 && layer.layer.map(item =>{
+                    return (
+                        <div className="children">
+                            <LayersResolver key={item.id} layer={item}/>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }

@@ -1,4 +1,9 @@
-import { GetAllComponents, AddLayers } from "./Constants";
+import { 
+  GetAllComponents, 
+  AddLayers,
+  ActiveSection, 
+  AddSections
+} from "../Actions/Constants";
 
 
 export const getAllComponents = (components) => {
@@ -7,6 +12,20 @@ export const getAllComponents = (components) => {
     payload: components,
   };
 };
+
+export const addSection = (section) => {
+  return {
+    type: AddSections,
+    payload: section,
+  }
+}
+
+export const activeSection = (id) => {
+  return {
+    type: ActiveSection, 
+    payload: id,
+  }
+}
 
 export const addLayers = (layer) => {
   return {

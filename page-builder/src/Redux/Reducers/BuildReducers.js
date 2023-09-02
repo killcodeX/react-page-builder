@@ -1,9 +1,16 @@
-import { GetAllComponents, AddLayers } from "../Actions/Constants";
+import { 
+  GetAllComponents, 
+  AddLayers,
+  ActiveSection, 
+  AddSections
+} from "../Actions/Constants";
+import { findSection } from "../../Utils/FindSection"; 
 
 const initialState = {
   components:[],
   pageBuilder:[],
   preview:[],
+  activeSection:null,
 };
 
 // Reducers
@@ -14,10 +21,22 @@ const BuildReducer = (state = initialState, action) => {
           ...state,
           components: action.payload,
         };
-        case AddLayers:
+        case AddSections: // Add section into Page
         return {
           ...state,
           pageBuilder: [...state.pageBuilder, action.payload],
+        };
+        case ActiveSection: // Save current active session
+          console.log('Active Section called -->', action.payload)
+        return {
+          ...state,
+          activeSection:action.payload
+        };
+        case AddLayers: // Add layers/element into section
+          let res = findSection(state.pageBuilder, state.activeSection, action.payload,)
+        return {
+          ...state,
+          pageBuilder:res
         };
       default:
         console.log('default -->', state)
