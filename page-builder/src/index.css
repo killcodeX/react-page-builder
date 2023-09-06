@@ -79,3 +79,14 @@ body {
 .children{
   padding-left: 20px;
 }
+
+.layer-resolver-element{
+  position:relative;
+  padding: 20px 0;
+}
+
+.submit-btn-conatiner{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

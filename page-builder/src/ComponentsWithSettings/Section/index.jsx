@@ -1,24 +1,41 @@
-import react from 'react';
-import Form from 'react-bootstrap/Form';
+import react,{ useState } from 'react';
+import { useDispatch } from "react-redux";
+import {Form,Button} from 'react-bootstrap';
+import { addSetting } from "../../Redux/Actions/BuildActions"
 
-function Section(){
+function Section({id}){
+    const dispatch = useDispatch()
+    const [container, setContainer] = useState('container');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let obj = {
+            component:'section',
+            id,
+            containerType:container
+        }
+        dispatch(addSetting(obj))
+    }
     return (
         <div className='layer-resolver-element'>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Check
                     inline
-                    label="1"
+                    label="container"
                     name="group1"
-                    type={type}
-                    id={`inline-${type}-1`}
+                    checked={container == 'container'}
+                    onChange={() => setContainer('container')}
                 />
                 <Form.Check
                     inline
-                    label="2"
+                    label="fluid-container"
                     name="group1"
-                    type={type}
-                    id={`inline-${type}-2`}
+                    checked={container == 'fluid-container'}
+                    onChange={() => setContainer('fluid-container')}
                 />
+                <div className='submit-btn-conatiner'>
+                    <Button type='submit' size="sm">Save Setting</Button>
+                </div>
             </Form>
         </div>
     )

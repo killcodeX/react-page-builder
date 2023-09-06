@@ -2,7 +2,8 @@ import {
   GetAllComponents, 
   AddLayers,
   ActiveSection, 
-  AddSections
+  AddSections,
+  AddSetting
 } from "../Actions/Constants";
 import { findSection } from "../../Utils/FindSection"; 
 
@@ -38,6 +39,11 @@ const BuildReducer = (state = initialState, action) => {
           ...state,
           pageBuilder:res
         };
+        case AddSetting: // Add Saved Setting into preview object
+          console.log('AddSetting called', action.payload)
+          return {
+            ...state,
+          };
       default:
         console.log('default -->', state)
         return state;

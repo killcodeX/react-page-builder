@@ -1,6 +1,7 @@
 import react,{ useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import Accordion from 'react-bootstrap/Accordion';
+import { Section } from "../ComponentsWithSettings";
 
 function LayersResolver({layer}){
     console.log("this is layer -->", layer)
@@ -30,7 +31,7 @@ function resolver(layer){
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Section</Accordion.Header>
                         <Accordion.Body>
-                            This is Section Component
+                            <Section id={layer.id}/>
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>

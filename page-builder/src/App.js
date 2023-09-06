@@ -7,7 +7,7 @@ function App(){
   return (
     <>
       <Header/>
-      <RouterProvider router={Router} />
+      <Router />
     </>
   )
 }
