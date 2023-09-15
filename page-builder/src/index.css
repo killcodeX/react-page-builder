@@ -82,11 +82,30 @@ body {
 
 .layer-resolver-element{
   position:relative;
-  padding: 20px 0;
 }
 
 .submit-btn-conatiner{
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.form-heading {
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.form-children-heading{
+  font-size:16px;
+  font-weight:500;
+  margin-bottom:8px;
+}
+
+.children-form{
+  margin-top: 16px;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: none !important;
 }
