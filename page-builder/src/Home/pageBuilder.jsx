@@ -7,10 +7,10 @@ function PageBuilder(){
         <section className='page-builder position-relative'>
             <div className='container-fluid'>
                 <div className='row mh-100'>
-                    <div className='col-3 p-0'>
+                    <div className='col-2 p-0'>
                         <ComponentList/>
                     </div>
-                    <div className='col-9 bg-light'>
+                    <div className='col-10 bg-light'>
                         <ComponentsWithSettings/>
                     </div>
                 </div>

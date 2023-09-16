@@ -1,11 +1,14 @@
-import react,{ useState } from 'react';
+import react,{ useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
+import { v4 as uuid } from 'uuid';
 import {Form, Row, Col} from 'react-bootstrap';
 import { addSetting } from "../../Redux/Actions/BuildActions"
 
 function SubSection({id}){
     const dispatch = useDispatch()
     const [flex, setFlex] = useState('flex');
+    const [columns, setColumns] = useState(1);
+    const [spacing, setSpacing] = useState(1);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,7 +38,15 @@ function SubSection({id}){
                     onChange={() => setFlex('flexbox-grid')}
                 />
                 {
-                    flex == 'flex'? <FlexLayout flex={flex} setFlex={setFlex}/>:<FlexGridLayout flex={flex} setFlex={setFlex}/>
+                    flex == 'flex'? 
+                    (
+                    <FlexLayout flex={flex} setFlex={setFlex}/>
+                    ):(
+                    <>
+                        <FlexGridLayout flex={flex} setFlex={setFlex} columns={columns} setColumns={setColumns}/>
+                        <GridChildrenComponent columns={columns} spacing={spacing}/>
+                    </>
+                    )
                 }
             </Form>
         </div>
@@ -84,7 +95,7 @@ function FlexLayout({flex, setFlex}){
     )
 }
 
-function FlexGridLayout({flex, setFlex}){
+function FlexGridLayout({flex, setFlex, columns, setColumns}){
     return (
         <div className='children-form'>
             <div className='form-children-heading text-secondary'>Row Column System</div>
@@ -102,7 +113,7 @@ function FlexGridLayout({flex, setFlex}){
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Number of Columns</Form.Label>
-                    <Form.Select defaultValue="1">
+                    <Form.Select defaultValue={columns} onChange={e => setColumns(e.target.value)}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -136,5 +147,21 @@ function FlexGridLayout({flex, setFlex}){
                 </Form.Group>
             </Row>
         </div>
+    )
+}
+
+
+function GridChildrenComponent({columns, spacing}){
+    let arr = []
+    for(let i = 1; i <= columns; i++) arr.push(i)
+    console.log(arr)
+    return(
+        <Row>
+            {
+                arr.map(i => {
+                    return <Col className="col-container" key={i}>{i}</Col>
+                })
+            }
+        </Row>
     )
 }
