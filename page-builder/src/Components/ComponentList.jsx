@@ -2,7 +2,8 @@ import react from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from 'uuid';
 import { VscAdd } from "react-icons/vsc";
-import { useDrag } from 'react-dnd'
+import { useDrag } from 'react-dnd';
+import { RiDraggable } from "react-icons/ri";
 import { components } from "../Data/Components";
 import { addLayers, addSection, activeSection } from "../Redux/Actions/BuildActions";
 
@@ -33,6 +34,7 @@ export default ComponentList;
 function Component({item, handleComponentAdd}){
     const [{isDragging}, drag] = useDrag(() => ({
         type: item.component,
+        item: item,
         collect: monitor => ({
           isDragging: !!monitor.isDragging(),
         }),
@@ -40,7 +42,7 @@ function Component({item, handleComponentAdd}){
     return(
         <div className='component-container d-flex justify-content-between' ref={drag}>
             <div className='left-side-component-container d-flex'>
-                <div className='component-container-icon px-2'>{item.icon}</div>
+                <div className='component-container-icon px-2'>{<RiDraggable/>}</div>
                 <div className='component-container-label'>{item.component}</div>
             </div>
             <div className='right-side-component-container cursor-pointer' 

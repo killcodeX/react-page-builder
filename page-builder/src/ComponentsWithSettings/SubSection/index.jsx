@@ -2,13 +2,19 @@ import react,{ useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from 'uuid';
 import {Form, Row, Col} from 'react-bootstrap';
-import { addSetting } from "../../Redux/Actions/BuildActions"
+import { VscAdd } from "react-icons/vsc";
+import { useDrop } from 'react-dnd'
+import { addSetting } from "../../Redux/Actions/BuildActions";
 
 function SubSection({id}){
     const dispatch = useDispatch()
     const [flex, setFlex] = useState('flex');
     const [columns, setColumns] = useState(1);
     const [spacing, setSpacing] = useState(1);
+
+    const handleComponentAdd = (item) =>{
+        console.log('received Item', item)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +50,7 @@ function SubSection({id}){
                     ):(
                     <>
                         <FlexGridLayout flex={flex} setFlex={setFlex} columns={columns} setColumns={setColumns}/>
-                        <GridChildrenComponent columns={columns} spacing={spacing}/>
+                        <GridChildrenComponent columns={columns} spacing={spacing} handleComponentAdd={handleComponentAdd}/>
                     </>
                     )
                 }
@@ -151,15 +157,29 @@ function FlexGridLayout({flex, setFlex, columns, setColumns}){
 }
 
 
-function GridChildrenComponent({columns, spacing}){
+function GridChildrenComponent({columns, spacing, handleComponentAdd}){
+    const [items, setItems] = useState()
     let arr = []
     for(let i = 1; i <= columns; i++) arr.push(i)
-    console.log(arr)
+
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: 'Sub Section',
+        drop: (item) => {
+            setItems(item)
+            handleComponentAdd(item)
+        },
+        collect: monitor => ({
+          isOver: !!monitor.isOver(),
+        }),
+      }), [])
+
     return(
         <Row>
             {
                 arr.map(i => {
-                    return <Col className="col-container" key={i}>{i}</Col>
+                    return <Col className="col-container" key={i} ref={drop}>
+                        <VscAdd/> Add Component
+                    </Col>
                 })
             }
         </Row>
