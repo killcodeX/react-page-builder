@@ -1,6 +1,5 @@
 import react,{ useState } from 'react';
 import { useDispatch } from "react-redux";
-import {Form,Button} from 'react-bootstrap';
 import { addSetting } from "../../Redux/Actions/BuildActions"
 
 function Section({id}){
@@ -18,25 +17,7 @@ function Section({id}){
     }
     return (
         <div className='layer-resolver-element'>
-            <Form onSubmit={handleSubmit}>
-                <Form.Check
-                    inline
-                    label="container"
-                    name="group1"
-                    checked={container == 'container'}
-                    onChange={() => setContainer('container')}
-                />
-                <Form.Check
-                    inline
-                    label="fluid-container"
-                    name="group1"
-                    checked={container == 'fluid-container'}
-                    onChange={() => setContainer('fluid-container')}
-                />
-                <div className='submit-btn-conatiner'>
-                    <Button type='submit' size="sm">Save Setting</Button>
-                </div>
-            </Form>
+            Section
         </div>
     )
 }

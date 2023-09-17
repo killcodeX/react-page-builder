@@ -1,5 +1,5 @@
 import Section from "./Section";
 import SubSection from "./SubSection";
-import Button from "./Button";
+import ButtonLayer from "./Button";
 
-export { Section, SubSection, Button };
+export { Section, SubSection, ButtonLayer };
