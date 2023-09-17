@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 function JsonGenerator(){
     let state = useSelector(state => state.build.pageBuilder[0])
-    console.log(state)
     return (
         <section className='generator-builder position-relative'>
             <div className='container'>
@@ -13,7 +12,7 @@ function JsonGenerator(){
                         theme='colors' 
                         src={state} 
                         style={{
-                        padding:"16px"
+                            padding:"16px"
                         }}
                     />
                 </div>
