@@ -34,7 +34,7 @@ function resolver(layer, drawer, setDrawer){
     switch(layer.component){
         case "section":
             return (
-                    <Card className="page-builder-layer-card">
+                    <Card className="page-builder-layer-card" key={layer.id}>
                         <Typography variant="h7">
                             Section
                         </Typography>
@@ -52,7 +52,7 @@ function resolver(layer, drawer, setDrawer){
             )
         case "sub-section":
             return (
-                <Card className="page-builder-layer-card">
+                <Card className="page-builder-layer-card" key={layer.id}>
                 <Typography variant="h7">
                     Sub Section
                 </Typography>
@@ -70,7 +70,7 @@ function resolver(layer, drawer, setDrawer){
             )
         case "button":
             return (
-                <Card className="page-builder-layer-card">
+                <Card className="page-builder-layer-card" key={layer.id}>
                 <Typography variant="h7">
                     Button
                 </Typography>

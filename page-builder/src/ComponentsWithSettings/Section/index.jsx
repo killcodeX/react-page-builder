@@ -1,5 +1,6 @@
 import react,{ useState } from 'react';
 import { useDispatch } from "react-redux";
+import { v4 as uuid } from 'uuid';
 import { Grid, 
     Typography, 
     Divider, 
@@ -8,7 +9,7 @@ import { Grid,
     Checkbox,
     Button 
 } from '@mui/material';
-import { addSetting } from "../../Redux/Actions/BuildActions";
+import { addSectionSetting } from "../../Redux/Actions/BuildActions";
 
 function Section({id}){
     const dispatch = useDispatch()
@@ -21,9 +22,12 @@ function Section({id}){
             component:'section',
             id,
             containerType:container,
-            subSection
+            layer: {
+                id:uuid(),
+                component: "sub-section"
+            }
         }
-        dispatch(addSetting(obj))
+        dispatch(addSectionSetting(obj))
     }
     return (
         <div className='layer-resolver-element'>

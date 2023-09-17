@@ -3,7 +3,8 @@ import {
   AddLayers,
   ActiveSection, 
   AddSections,
-  AddSetting
+  AddSetting,
+  AddSectionSetting
 } from "../Actions/Constants";
 
 
@@ -18,6 +19,13 @@ export const addSection = (section) => {
   return {
     type: AddSections,
     payload: section,
+  }
+}
+
+export const addSectionSetting = (obj) => {
+return {
+    type: AddSectionSetting, 
+    payload: obj,
   }
 }
 
