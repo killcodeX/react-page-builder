@@ -7,17 +7,18 @@ export const components = [
         component:'Section',
         layer:'section',
         icon:<VscSymbolConstant/>
-    },
-    {
-        id:uuid(),
-        component:'Sub Section',
-        layer:'sub-section',
-        icon:<VscSymbolEnum/>
-    },
-    {
-        id:uuid(),
-        component:'Button',
-        layer:'button',
-        icon:<VscBold/>
     }
 ]
+
+// {
+//         id:uuid(),
+//         component:'Sub Section',
+//         layer:'sub-section',
+//         icon:<VscSymbolEnum/>
+//     },
+//     {
+//         id:uuid(),
+//         component:'Button',
+//         layer:'button',
+//         icon:<VscBold/>
+//     }

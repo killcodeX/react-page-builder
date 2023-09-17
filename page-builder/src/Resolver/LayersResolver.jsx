@@ -1,6 +1,7 @@
 import react,{ useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Card, Typography, Button, Drawer } from '@mui/material';
+import { Card, Typography, IconButton, Drawer } from '@mui/material';
+import { CiEdit } from "react-icons/ci"
 import { Section, SubSection, ButtonLayer } from "../ComponentsWithSettings";
 import { activeSection } from "../Redux/Actions/BuildActions";
 
@@ -34,10 +35,12 @@ function resolver(layer, drawer, setDrawer){
         case "section":
             return (
                     <Card className="page-builder-layer-card">
-                        <Typography variant="h5">
+                        <Typography variant="h7">
                             Section
                         </Typography>
-                        <Button onClick={() => setDrawer(true)}>Edit</Button>
+                        <IconButton onClick={() => setDrawer(true)}>
+                            <CiEdit/>
+                        </IconButton>
                         <Drawer
                             anchor='right'
                             open={drawer}
@@ -50,10 +53,12 @@ function resolver(layer, drawer, setDrawer){
         case "sub-section":
             return (
                 <Card className="page-builder-layer-card">
-                <Typography variant="h5">
+                <Typography variant="h7">
                     Sub Section
                 </Typography>
-                <Button onClick={() => setDrawer(true)}>Edit</Button>
+                <IconButton onClick={() => setDrawer(true)}>
+                    <CiEdit/>
+                </IconButton>
                 <Drawer
                     anchor='right'
                     open={drawer}
@@ -66,10 +71,12 @@ function resolver(layer, drawer, setDrawer){
         case "button":
             return (
                 <Card className="page-builder-layer-card">
-                <Typography variant="h5">
+                <Typography variant="h7">
                     Button
                 </Typography>
-                <Button onClick={() => setDrawer(true)}>Edit</Button>
+                <IconButton onClick={() => setDrawer(true)}>
+                    <CiEdit/>
+                </IconButton>
                 <Drawer
                     anchor='right'
                     open={drawer}

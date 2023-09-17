@@ -14,7 +14,7 @@ function ComponentList(){
             dispatch(addSection({component, id, layer:[]}))
             dispatch(activeSection(id))
         }else{
-            dispatch(addLayers({component, id}))
+            //dispatch(addLayers({component, id}))
         }
     }
     return (
