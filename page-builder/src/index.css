@@ -33,6 +33,11 @@ body {
   font-weight: 700;
 }
 
+.right-left-side {
+  display:flex;
+  gap:8px;
+}
+
 /* page builder */
 .page-builder{
   margin-top:4rem;
@@ -74,6 +79,14 @@ body {
 .component-with-settings-header{
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+/* layer resolver */
+.page-builder-layer-card {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 16px;
 }
 
 .children{
@@ -118,4 +131,10 @@ body {
     border:1px dashed gray;
     padding:8px 16px;
     height:40px;
+}
+
+/* obj generator */
+
+.generator-builder{
+  margin-top:8rem;
 }

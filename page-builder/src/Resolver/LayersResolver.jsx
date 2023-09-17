@@ -33,8 +33,8 @@ function resolver(layer, drawer, setDrawer){
     switch(layer.component){
         case "section":
             return (
-                    <Card>
-                        <Typography variant="h3">
+                    <Card className="page-builder-layer-card">
+                        <Typography variant="h5">
                             Section
                         </Typography>
                         <Button onClick={() => setDrawer(true)}>Edit</Button>
@@ -49,8 +49,8 @@ function resolver(layer, drawer, setDrawer){
             )
         case "sub-section":
             return (
-                <Card>
-                <Typography variant="h3">
+                <Card className="page-builder-layer-card">
+                <Typography variant="h5">
                     Sub Section
                 </Typography>
                 <Button onClick={() => setDrawer(true)}>Edit</Button>
@@ -65,8 +65,8 @@ function resolver(layer, drawer, setDrawer){
             )
         case "button":
             return (
-                <Card>
-                <Typography variant="h3">
+                <Card className="page-builder-layer-card">
+                <Typography variant="h5">
                     Button
                 </Typography>
                 <Button onClick={() => setDrawer(true)}>Edit</Button>

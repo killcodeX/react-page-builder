@@ -1,4 +1,5 @@
 import react from 'react';
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
 function Header(){
@@ -21,8 +22,8 @@ function Header(){
             <header className='header'>
                 <div className='header-left-side'>Page Builder</div>
                 <div className='right-left-side'>
-                    <button type="button" className="btn btn-outline-dark mx-2" onClick={savePage}>Save</button>
-                    <button type="button" className="btn btn-dark" onClick={moveToPreview}>Preview</button>
+                    <Button variant="outlined" onClick={savePage}>Save</Button>
+                    <Button variant="contained" onClick={moveToPreview}>Preview</Button>
                 </div>
             </header>
         )
@@ -31,8 +32,8 @@ function Header(){
             <header className='header'>
                 <div className='header-left-side'>Page Builder</div>
                 <div className='right-left-side'>
-                    <button type="button" className="btn btn-outline-dark mx-2" onClick={backToPage}>Page Builder</button>
-                    <button type="button" className="btn btn-dark" onClick={moveToGenerate}>Generate</button>
+                    <Button variant="outlined" onClick={backToPage}>Page Builder</Button>
+                   <Button variant="contained" onClick={moveToGenerate}>Generate</Button>
                 </div>
             </header>
         )
@@ -41,7 +42,7 @@ function Header(){
             <header className='header'>
                 <div className='header-left-side'>Page Builder</div>
                 <div className='right-left-side'>
-                    <button type="button" className="btn btn-outline-dark mx-2" onClick={backToPage}>Page Builder</button>
+                    <Button variant="contained" onClick={backToPage}>Page Builder</Button>
                 </div>
             </header>
         )
