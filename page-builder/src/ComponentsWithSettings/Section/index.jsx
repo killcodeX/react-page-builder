@@ -11,7 +11,7 @@ import { Grid,
 } from '@mui/material';
 import { addSectionSetting } from "../../Redux/Actions/BuildActions";
 
-function Section({id}){
+function Section({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType}){
     const dispatch = useDispatch()
     const [container, setContainer] = useState('container');
     const [subSection, setSubSection] = useState(true);
@@ -28,6 +28,17 @@ function Section({id}){
             }
         }
         dispatch(addSectionSetting(obj))
+        setDrawer(false)
+        setOpenSnackbar(true)
+        setMessage('Section Setting saved')
+    }
+
+    const handleDiscard = (e) => {
+        e.preventDefault();
+        setSnackbarType('error')
+        setDrawer(false)
+        setOpenSnackbar(true)
+        setMessage('Section Setting discarded!')
     }
     return (
         <div className='layer-resolver-element'>
@@ -46,7 +57,7 @@ function Section({id}){
                     <div className='form-submit-section'>
                         <Divider />
                        <div className='form-submit-buttons'>
-                            <Button variant="outlined">Discard</Button>
+                            <Button variant="outlined" onClick={handleDiscard}>Discard</Button>
                             <Button type="submit" variant="contained">Save</Button>
                        </div>
                     </div>

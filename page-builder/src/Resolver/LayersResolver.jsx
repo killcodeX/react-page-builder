@@ -1,17 +1,21 @@
 import react,{ useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Card, Typography, IconButton, Drawer } from '@mui/material';
-import { CiEdit } from "react-icons/ci"
+import SnackBar from "../Utils/SnackBar";
+import { CiEdit } from "react-icons/ci";
 import { Section, SubSection, ButtonLayer } from "../ComponentsWithSettings";
 import { activeSection } from "../Redux/Actions/BuildActions";
 
 function LayersResolver({layer}){
     const dispatch = useDispatch()
-    const [drawer, setDrawer] = useState(false)
+    const [drawer, setDrawer] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarType, setSnackbarType] = useState('success');
+    const [message, setMessage] = useState('');
     const activeId = useSelector(state => state.build.activeSection);
     return (
         <div className='layer-resolver-elements my-2'>
-                {resolver(layer, drawer, setDrawer)}
+                {resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType)}
             {
                 layer?.layer?.length > 0 && layer.layer.map(item =>{
                     return (
@@ -24,13 +28,19 @@ function LayersResolver({layer}){
                     )
                 })
             }
+            <SnackBar 
+                openSnackbar={openSnackbar} 
+                message={message}
+                setOpenSnackbar={setOpenSnackbar}
+                type={snackbarType}
+            />
         </div>
     )
 }
 
 export default LayersResolver;
 
-function resolver(layer, drawer, setDrawer){
+function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType){
     switch(layer.component){
         case "section":
             return (
@@ -46,7 +56,14 @@ function resolver(layer, drawer, setDrawer){
                             open={drawer}
                             onClose={() => setDrawer(false)}
                         >
-                            <Section id={layer.id}/>
+                            <Section 
+                                drawer={drawer} 
+                                setDrawer={setDrawer} 
+                                id={layer.id}
+                                setOpenSnackbar={setOpenSnackbar}
+                                setMessage={setMessage}
+                                setSnackbarType={setSnackbarType}
+                            />
                         </Drawer>
                     </Card>
             )
@@ -64,7 +81,7 @@ function resolver(layer, drawer, setDrawer){
                     open={drawer}
                     onClose={() => setDrawer(false)}
                 >
-                    <SubSection id={layer.id}/>
+                    <SubSection drawer={drawer} setdrawer={setDrawer} id={layer.id}/>
                 </Drawer>
             </Card>
             )
@@ -82,7 +99,7 @@ function resolver(layer, drawer, setDrawer){
                     open={drawer}
                     onClose={() => setDrawer(false)}
                 >
-                    <ButtonLayer id={layer.id}/>
+                    <ButtonLayer drawer={drawer} setdrawer={setDrawer} id={layer.id}/>
                 </Drawer>
             </Card>
             )
