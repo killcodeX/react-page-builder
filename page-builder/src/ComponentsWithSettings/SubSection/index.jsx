@@ -2,12 +2,30 @@ import react,{ useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from 'uuid';
 import { VscAdd } from "react-icons/vsc";
-import { useDrop } from 'react-dnd'
+import { Grid, 
+    Typography, 
+    Divider, 
+    FormGroup, 
+    FormControlLabel, 
+    Checkbox,
+    Button,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    TextField
+} from '@mui/material';
 import { addSetting } from "../../Redux/Actions/BuildActions";
 
-function SubSection({id}){
+function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType}){
     const dispatch = useDispatch()
     const [flex, setFlex] = useState('flex');
+    const [flexVar, setFlexVar] = useState('flex');
+    const [flexWrap, setFlexWrap] = useState('wrap');
+    const [flexDir, setFlexDir] = useState('column');
+    const [justifyContent, setJustifyContent] = useState('flex-start');
+    const [alignItems, setAlignItems] = useState('flex-start');
+    const [gap, setGap] = useState(0)
     const [columns, setColumns] = useState(1);
     const [spacing, setSpacing] = useState(1);
 
@@ -23,38 +41,64 @@ function SubSection({id}){
         //     containerType:container
         // }
         //dispatch(addSetting(obj))
+        setDrawer(false)
     }
+
+    const handleDiscard = (e) => {
+        e.preventDefault();
+        setSnackbarType('error')
+        setDrawer(false)
+        setOpenSnackbar(true)
+        setMessage('Sub Section Setting discarded!')
+    }
+
     return (
         <div className='layer-resolver-element'>
-            {/* <Form onSubmit={handleSubmit}>
-                <div className='form-heading text-secondary'>Layout System</div>
-                <Form.Check
-                    inline
-                    label="Flex"
-                    name="group1"
-                    checked={flex == 'flex'}
-                    onChange={() => setFlex('flex')}
-                />
-                <Form.Check
-                    inline
-                    label="Flexbox Grid"
-                    name="group1"
-                    checked={flex == 'flexbox-grid'}
-                    onChange={() => setFlex('flexbox-grid')}
-                />
-                {
-                    flex == 'flex'? 
-                    (
-                    <FlexLayout flex={flex} setFlex={setFlex}/>
-                    ):(
-                    <>
-                        <FlexGridLayout flex={flex} setFlex={setFlex} columns={columns} setColumns={setColumns}/>
-                        <GridChildrenComponent columns={columns} spacing={spacing} handleComponentAdd={handleComponentAdd}/>
-                    </>
-                    )
-                }
-            </Form> */}
-            Subsection
+            <div className='component-setting-container'>
+            <Grid container={true} className="d-flex flex-column">
+                <Typography variant="h6" className="my-2">
+                    Sub Section Settings
+                </Typography>
+                <Divider />
+                <form onSubmit={handleSubmit}>
+                    <div className='form-children-heading text-secondary'>Layout System</div>
+                    <FormGroup className='my-2'>
+                        <FormControlLabel control={<Checkbox checked={flex == 'flex'} onChange={() => setFlex('flex')}/>} label="Flex System" />
+                        <FormControlLabel control={<Checkbox checked={flex == 'flex-grid'} onChange={() => setFlex('flex-grid')}/>} label="Row Column System" />
+                    </FormGroup>
+                    {flex == 'flex'? 
+                        (
+                            <FlexLayout 
+                                flexVar={flexVar} 
+                                setFlexVar={setFlexVar}
+                                flexWrap={flexWrap}
+                                setFlexWrap={setFlexWrap}
+                                flexDir={flexDir}
+                                setFlexDir={setFlexDir}
+                                justifyContent={justifyContent}
+                                setJustifyContent={setJustifyContent}
+                                alignItems={alignItems}
+                                setAlignItems={setAlignItems}
+                                gap={gap}
+                                setGap={setGap}
+                            />
+                        ):(
+                        <>
+                            {/* <FlexGridLayout flex={flex} setFlex={setFlex} columns={columns} setColumns={setColumns}/>
+                            <GridChildrenComponent columns={columns} spacing={spacing} handleComponentAdd={handleComponentAdd}/> */}
+                        </>
+                        )
+                    } 
+                    <div className='form-submit-section'>
+                        <Divider />
+                       <div className='form-submit-buttons'>
+                            <Button variant="outlined" onClick={handleDiscard}>Discard</Button>
+                            <Button type="submit" variant="contained">Save</Button>
+                       </div>
+                    </div>
+                </form>
+            </Grid>
+            </div>
         </div>
     )
 }
@@ -63,43 +107,124 @@ export default SubSection;
 
 
 
-// function FlexLayout({flex, setFlex}){
-//     return (
-//         <div className='children-form'>
-//             <div className='form-children-heading text-secondary'>Flex System</div>
-//             <Row className="mb-3">
-//                 <Form.Group as={Col} controlId="formGridState">
-//                     <Form.Label>Flex Variations</Form.Label>
-//                     <Form.Select defaultValue="Flex">
-//                         <option>Flex</option>
-//                         <option>Inline Flex</option>
-//                     </Form.Select>
-//                 </Form.Group>
-//                 <Form.Group as={Col} controlId="formGridState">
-//                     <Form.Label>Justify Content</Form.Label>
-//                     <Form.Select defaultValue="Content Start">
-//                         <option>Content Start</option>
-//                         <option>Content End</option>
-//                         <option>Content Center</option>
-//                         <option>Content Between</option>
-//                         <option>Content Around</option>
-//                         <option>Content Evenly</option>
-//                     </Form.Select>
-//                 </Form.Group>
-//                 <Form.Group as={Col} controlId="formGridState">
-//                     <Form.Label>Align items</Form.Label>
-//                     <Form.Select defaultValue="Start">
-//                         <option>Start</option>
-//                         <option>End</option>
-//                         <option>Center</option>
-//                         <option>Baseline</option>
-//                         <option>Stretch</option>
-//                     </Form.Select>
-//                 </Form.Group>
-//             </Row>
-//         </div>
-//     )
-// }
+function FlexLayout({flexVar, 
+    setFlexVar, 
+    flexWrap, 
+    setFlexWrap,
+    flexDir,
+    setFlexDir, 
+    justifyContent, 
+    setJustifyContent,
+    alignItems,
+    setAlignItems, 
+    gap, 
+    setGap
+}){
+    return (
+        <div className='children-form'>
+            <div className='form-children-heading text-secondary py-2'>Flex System</div>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-2'>
+                <Grid item xs={6} md={6}>
+                    <FormControl sx={{ width: "100%" }}>
+                        <InputLabel id="flex-variation-label">Flex Variations</InputLabel>
+                        <Select
+                            labelId="flex-variation-label"
+                            id="flex-variation-label"
+                            label="Flex Variations"
+                            value={flexVar}
+                            onChange={(e) => setFlexVar(e.target.value)}
+                        >
+                            <MenuItem value={'flex'}>Flex</MenuItem>
+                            <MenuItem value={'inline-flex'}>Inline Flex</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={6} md={6}>
+                    <FormControl sx={{ width: "100%" }}>
+                        <InputLabel id="flex-variation-label">Flex Wrap</InputLabel>
+                        <Select
+                            labelId="flex-variation-label"
+                            id="flex-variation-label"
+                            label="Flex Wrap"
+                            value={flexWrap}
+                            onChange={(e) => setFlexWrap(e.target.value)}
+                        >
+                            <MenuItem value={'wrap'}>Flex Wrap</MenuItem>
+                            <MenuItem value={'nowrap'}>No Wrap</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+            </Grid>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-2'>
+            <Grid item xs={6} md={6}>
+                <FormControl sx={{ width: "100%" }}>
+                        <InputLabel id="flex-variation-label">Flex Direction</InputLabel>
+                        <Select
+                            labelId="flex-variation-label"
+                            id="flex-variation-label"
+                            label="Flex Direction"
+                            value={flexDir}
+                            onChange={(e) => setFlexDir(e.target.value)}
+                        >
+                            <MenuItem value={'column'}>Column</MenuItem>
+                            <MenuItem value={'column-reverse'}>Column Reverse</MenuItem>
+                            <MenuItem value={'row'}>Row</MenuItem>
+                            <MenuItem value={'row-reverse'}>Row Reverse</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={6} md={6}>
+                    <FormControl sx={{ width: "100%" }}>
+                        <InputLabel id="flex-variation-label">Justify Content</InputLabel>
+                        <Select
+                            labelId="flex-variation-label"
+                            id="flex-variation-label"
+                            label="Justify Content"
+                            value={justifyContent}
+                            onChange={(e) => setJustifyContent(e.target.value)}
+                        >
+                            <MenuItem value={'flex-start'}>Content Start</MenuItem>
+                            <MenuItem value={'flex-end'}>Content End</MenuItem>
+                            <MenuItem value={'center'}>Content Center</MenuItem>
+                            <MenuItem value={'space-between'}>Content Between</MenuItem>
+                            <MenuItem value={'space-around'}>Content Around</MenuItem>
+                            <MenuItem value={'space-evenly'}>Content Evenly</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+            </Grid>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-2'>
+            <Grid item xs={6} md={6}>
+                <FormControl sx={{ width: "100%" }}>
+                        <InputLabel id="flex-variation-label">Align Items</InputLabel>
+                        <Select
+                            labelId="flex-variation-label"
+                            id="flex-variation-label"
+                            label="Align Items"
+                            value={alignItems}
+                            onChange={(e) => setAlignItems(e.target.value)}
+                        >
+                            <MenuItem value={'flex-start'}>Align Start</MenuItem>
+                            <MenuItem value={'flex-end'}>Align End</MenuItem>
+                            <MenuItem value={'center'}>Align Center</MenuItem>
+                            <MenuItem value={'baseline'}>Align Baseline</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={6} md={6}>
+                    <FormControl sx={{ width: "100%" }}>
+                        <TextField
+                            type="number"
+                            label="Gap"
+                            value={gap}
+                            onChange={(e) => setGap(e.target.value)}
+                        />
+                    </FormControl>
+                </Grid>
+            </Grid>
+        </div>
+    )
+}
 
 // function FlexGridLayout({flex, setFlex, columns, setColumns}){
 //     return (

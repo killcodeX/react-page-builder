@@ -81,7 +81,14 @@ function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                     open={drawer}
                     onClose={() => setDrawer(false)}
                 >
-                    <SubSection drawer={drawer} setdrawer={setDrawer} id={layer.id}/>
+                    <SubSection
+                        drawer={drawer} 
+                        setDrawer={setDrawer} 
+                        id={layer.id}
+                        setOpenSnackbar={setOpenSnackbar}
+                        setMessage={setMessage}
+                        setSnackbarType={setSnackbarType}
+                    />
                 </Drawer>
             </Card>
             )
