@@ -2,6 +2,7 @@ import react,{ useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from 'uuid';
 import { VscAdd } from "react-icons/vsc";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { Grid, 
     Typography, 
     Divider, 
@@ -16,7 +17,7 @@ import { Grid,
     TextField,
     Box
 } from '@mui/material';
-import { addSetting } from "../../Redux/Actions/BuildActions";
+import { addSetting, activeSection } from "../../Redux/Actions/BuildActions";
 
 function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal}){
     const dispatch = useDispatch()
@@ -29,6 +30,10 @@ function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
     const [gap, setGap] = useState(0)
     const [columns, setColumns] = useState(1);
     const [spacing, setSpacing] = useState(1);
+
+    useEffect(() => {
+        dispatch(activeSection(id))
+    },[])
 
     const handleComponentAdd = (item) =>{
         console.log('received Item', item)
@@ -230,7 +235,10 @@ function FlexLayout({flexVar,
             <Grid container>
                 <div className='form-children-heading text-secondary py-2'>Add Child Component in Sub Section</div>
                 <Grid item xs={12} md={12} onClick={() => setModal(true)}>
-                    Add Component +
+                    <div className='add-component-container'>
+                        <AiOutlineAppstoreAdd/>
+                        <span>Add Component to SubSection</span>
+                    </div>
                 </Grid>
             </Grid>
         </div>

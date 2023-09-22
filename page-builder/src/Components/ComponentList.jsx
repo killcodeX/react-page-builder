@@ -11,7 +11,7 @@ function ComponentList(){
     const dispatch = useDispatch()
     const handleComponentAdd = (component, id) =>{
         if(component === 'section'){
-            dispatch(addSection({component, id, layer:[]}))
+            dispatch(addSection({component, id, layers:[]}))
             dispatch(activeSection(id))
         }else{
             //dispatch(addLayers({component, id}))

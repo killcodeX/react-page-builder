@@ -1,10 +1,10 @@
 import react from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from 'uuid';
 import { VscAdd } from "react-icons/vsc";
 import { Box, Modal, Typography, Grid, Card, Divider } from "@mui/material";
 import { childComponents } from "../Data/Components";
-import { addLayers, addSection, activeSection } from "../Redux/Actions/BuildActions";
+import { addLayers, activeSection } from "../Redux/Actions/BuildActions";
 
 const style = {
   position: 'absolute',
@@ -19,6 +19,12 @@ const style = {
 };
 
 function ComponentModal({open, setOpen}){
+    const dispatch = useDispatch()
+    const activeId = useSelector(state => state.build.activeSection);
+
+    const handleAddComponent = (item, id) => {
+        dispatch(addLayers(item, id))
+    }
 
     return (
         <Modal
@@ -42,7 +48,8 @@ function ComponentModal({open, setOpen}){
                                             <div className='component-container-icon px-2'>{item.icon}</div>
                                             <div className='component-container-label'>{item.component}</div>
                                         </div>
-                                        <div className='right-side-component-container cursor-pointer'>
+                                        <div className='right-side-component-container cursor-pointer' 
+                                            onClick={() => handleAddComponent(item, item.id)}>
                                             <VscAdd/>
                                         </div>
                                     </Card>

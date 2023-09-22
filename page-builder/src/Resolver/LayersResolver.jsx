@@ -4,7 +4,6 @@ import { Card, Typography, IconButton, Drawer } from '@mui/material';
 import SnackBar from "../Utils/SnackBar";
 import { CiEdit } from "react-icons/ci";
 import { Section, SubSection, ButtonLayer } from "../ComponentsWithSettings";
-import { activeSection } from "../Redux/Actions/BuildActions";
 import ComponentModal from "../Components/ComponentModals";
 
 function LayersResolver({layer}){
@@ -19,7 +18,7 @@ function LayersResolver({layer}){
         <div className='layer-resolver-elements my-2'>
                 {resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal)}
             {
-                layer?.layer?.length > 0 && layer.layer.map(item =>{
+                layer?.layers?.length > 0 && layer.layers.map(item =>{
                     return (
                         <div className="children">
                             <LayersResolver 
@@ -44,6 +43,7 @@ function LayersResolver({layer}){
 export default LayersResolver;
 
 function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal){
+    console.log(layer)
     switch(layer.component){
         case "section":
             return (
@@ -97,11 +97,29 @@ function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                 </Drawer>
             </Card>
             )
-        case "button":
+        case "Button":
             return (
                 <Card className="page-builder-layer-card" key={layer.id}>
                 <Typography variant="h7">
                     Button
+                </Typography>
+                <IconButton onClick={() => setDrawer(true)}>
+                    <CiEdit/>
+                </IconButton>
+                <Drawer
+                    anchor='right'
+                    open={drawer}
+                    onClose={() => setDrawer(false)}
+                >
+                    <ButtonLayer drawer={drawer} setdrawer={setDrawer} id={layer.id}/>
+                </Drawer>
+            </Card>
+            )
+            case "Accordion":
+            return (
+                <Card className="page-builder-layer-card" key={layer.id}>
+                <Typography variant="h7">
+                    Accordion
                 </Typography>
                 <IconButton onClick={() => setDrawer(true)}>
                     <CiEdit/>

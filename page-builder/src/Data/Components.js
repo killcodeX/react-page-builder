@@ -6,7 +6,8 @@ export const components = [
         id:uuid(),
         component:'Section',
         layer:'section',
-        icon:<VscSymbolConstant/>
+        icon:<VscSymbolConstant/>,
+        layers:[]
     }
 ]
 
@@ -15,37 +16,28 @@ export const childComponents = [
         id:uuid(),
         component:'Sub Section',
         layer:'sub-section',
-        icon:<VscSymbolEnum/>
+        icon:<VscSymbolEnum/>,
+        layers:[]
     },
     {
         id:uuid(),
         component:'Accordion',
         layer:'accordion',
-        icon:<VscSymbolEnum/>
+        icon:<VscSymbolEnum/>,
+        layers:[]
     },
     {
         id:uuid(),
         component:'Card',
         layer:'card',
-        icon:<VscSymbolEnum/>
-    },
-    {
-        id:uuid(),
-        component:'Card',
-        layer:'card',
-        icon:<VscSymbolEnum/>
+        icon:<VscSymbolEnum/>,
+        layers:[]
     },
     {
         id:uuid(),
         component:'Date Picker',
         layer:'date-picker',
-        icon:<VscSymbolEnum/>
-    },
-    {
-        id:uuid(),
-        component:'Date Picker',
-        layer:'date-picker',
-        icon:<VscSymbolEnum/>
+        icon:<VscSymbolEnum/>,
     },
     {
         id:uuid(),

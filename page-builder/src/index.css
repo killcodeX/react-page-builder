@@ -167,3 +167,18 @@ body {
 .generator-builder{
   margin-top:8rem;
 }
+
+/* Add Component */
+
+.add-component-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  border:1px dashed #DBDFE9;;
+  padding:8px 16px;
+}
+
+.add-component-container:hover {
+  cursor:pointer;
+}
