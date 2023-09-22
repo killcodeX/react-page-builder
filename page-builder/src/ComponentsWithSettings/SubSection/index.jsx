@@ -13,11 +13,12 @@ import { Grid,
     InputLabel,
     Select,
     MenuItem,
-    TextField
+    TextField,
+    Box
 } from '@mui/material';
 import { addSetting } from "../../Redux/Actions/BuildActions";
 
-function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType}){
+function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal}){
     const dispatch = useDispatch()
     const [flex, setFlex] = useState('flex');
     const [flexVar, setFlexVar] = useState('flex');
@@ -81,6 +82,8 @@ function SubSection({id, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                                 setAlignItems={setAlignItems}
                                 gap={gap}
                                 setGap={setGap}
+                                modal={modal}
+                                setModal={setModal}
                             />
                         ):(
                         <>
@@ -118,7 +121,9 @@ function FlexLayout({flexVar,
     alignItems,
     setAlignItems, 
     gap, 
-    setGap
+    setGap,
+    modal, 
+    setModal
 }){
     return (
         <div className='children-form'>
@@ -220,6 +225,12 @@ function FlexLayout({flexVar,
                             onChange={(e) => setGap(e.target.value)}
                         />
                     </FormControl>
+                </Grid>
+            </Grid>
+            <Grid container>
+                <div className='form-children-heading text-secondary py-2'>Add Child Component in Sub Section</div>
+                <Grid item xs={12} md={12} onClick={() => setModal(true)}>
+                    Add Component +
                 </Grid>
             </Grid>
         </div>

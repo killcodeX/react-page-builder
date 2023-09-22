@@ -5,17 +5,19 @@ import SnackBar from "../Utils/SnackBar";
 import { CiEdit } from "react-icons/ci";
 import { Section, SubSection, ButtonLayer } from "../ComponentsWithSettings";
 import { activeSection } from "../Redux/Actions/BuildActions";
+import ComponentModal from "../Components/ComponentModals";
 
 function LayersResolver({layer}){
     const dispatch = useDispatch()
     const [drawer, setDrawer] = useState(false);
+    const [modal, setModal] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarType, setSnackbarType] = useState('success');
     const [message, setMessage] = useState('');
     const activeId = useSelector(state => state.build.activeSection);
     return (
         <div className='layer-resolver-elements my-2'>
-                {resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType)}
+                {resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal)}
             {
                 layer?.layer?.length > 0 && layer.layer.map(item =>{
                     return (
@@ -34,13 +36,14 @@ function LayersResolver({layer}){
                 setOpenSnackbar={setOpenSnackbar}
                 type={snackbarType}
             />
+            <ComponentModal open={modal} setOpen={setModal}/>
         </div>
     )
 }
 
 export default LayersResolver;
 
-function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType){
+function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnackbarType, modal, setModal){
     switch(layer.component){
         case "section":
             return (
@@ -88,6 +91,8 @@ function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                         setOpenSnackbar={setOpenSnackbar}
                         setMessage={setMessage}
                         setSnackbarType={setSnackbarType}
+                        modal={modal}
+                        setModal={setModal}
                     />
                 </Drawer>
             </Card>
