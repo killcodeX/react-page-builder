@@ -43,10 +43,10 @@ function Component({item, handleComponentAdd}){
         <div className='component-container d-flex justify-content-between' ref={drag}>
             <div className='left-side-component-container d-flex'>
                 <div className='component-container-icon px-2'>{item.icon}</div>
-                <div className='component-container-label'>{item.component}</div>
+                <div className='component-container-label'>{item.label}</div>
             </div>
             <div className='right-side-component-container cursor-pointer' 
-                onClick={() => handleComponentAdd(item.layer, uuid())}>
+                onClick={() => handleComponentAdd(item.component, uuid())}>
                 <VscAdd/>
             </div>
         </div>

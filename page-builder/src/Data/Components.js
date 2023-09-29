@@ -4,8 +4,8 @@ import { VscSymbolConstant, VscSymbolEnum, VscBold } from "react-icons/vsc";
 export const components = [
     {
         id:uuid(),
-        component:'Section',
-        layer:'section',
+        label:'Section',
+        component:'section',
         icon:<VscSymbolConstant/>,
         layers:[]
     }
@@ -14,71 +14,71 @@ export const components = [
 export const childComponents = [
     {
         id:uuid(),
-        component:'Sub Section',
-        layer:'sub-section',
+        label:'Sub Section',
+        component:'sub-section',
         icon:<VscSymbolEnum/>,
         layers:[]
     },
     {
         id:uuid(),
-        component:'Accordion',
-        layer:'accordion',
+        label:'Accordion',
+        component:'accordion',
         icon:<VscSymbolEnum/>,
         layers:[]
     },
     {
         id:uuid(),
-        component:'Card',
-        layer:'card',
+        label:'Card',
+        component:'card',
         icon:<VscSymbolEnum/>,
         layers:[]
     },
     {
         id:uuid(),
-        component:'Date Picker',
-        layer:'date-picker',
+        label:'Date Picker',
+        component:'date-picker',
         icon:<VscSymbolEnum/>,
     },
     {
         id:uuid(),
-        component:'Button',
-        layer:'button',
+        label:'Button',
+        component:'button',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Input',
-        layer:'input',
+        label:'Input',
+        component:'input',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Modal',
-        layer:'modal',
+        label:'Modal',
+        component:'modal',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Radio Buttons',
-        layer:'radio-button',
+        label:'Radio Buttons',
+        component:'radio-button',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Select',
-        layer:'select',
+        label:'Select',
+        component:'select',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Switch',
-        layer:'switch',
+        label:'Switch',
+        component:'switch',
         icon:<VscBold/>
     },
     {
         id:uuid(),
-        component:'Tabs',
-        layer:'tabs',
+        label:'Tabs',
+        component:'tabs',
         icon:<VscBold/>
     }
 ]

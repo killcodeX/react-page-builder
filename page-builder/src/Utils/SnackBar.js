@@ -1,36 +1,42 @@
 import React, { useState } from "react";
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
 import { AiOutlineClose } from "react-icons/ai";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
+function SnackBar({ openSnackbar, message, setOpenSnackbar, type }) {
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
-function SnackBar({openSnackbar, message, setOpenSnackbar, type}){
+  // const action = (
+  //   <React.Fragment>
+  //     <IconButton
+  //       size="small"
+  //       aria-label="close"
+  //       color="inherit"
+  //       onClick={() => setOpenSnackbar(false)}
+  //     >
+  //       <AiOutlineClose />
+  //     </IconButton>
+  //   </React.Fragment>
+  // );
 
-    const action = (
-        <React.Fragment>
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={() => setOpenSnackbar(false)}
-          >
-            <AiOutlineClose />
-          </IconButton>
-        </React.Fragment>
-      );
-
-      
-    return (
-    <Box>
-      <Snackbar
-        className={`snackbar-component-${type}`}
-        open={openSnackbar}
-        autoHideDuration={1000}
-        action={action}
-        message={message}
-      />
-    </Box>
+  return (
+    <Snackbar
+      open={openSnackbar}
+      autoHideDuration={6000}
+      onClose={() => setOpenSnackbar(false)}
+    >
+      <Alert
+        onClose={() => setOpenSnackbar(false)}
+        severity={type}
+        sx={{ width: "100%" }}
+      >
+        {message}
+      </Alert>
+    </Snackbar>
   );
 }
 
