@@ -1,12 +1,11 @@
-import { 
-  GetAllComponents, 
+import {
+  GetAllComponents,
   AddLayers,
-  ActiveSection, 
+  ActiveSection,
   AddSections,
   AddSetting,
-  AddSectionSetting
+  AddSectionSetting,
 } from "../Actions/Constants";
-
 
 export const getAllComponents = (components) => {
   return {
@@ -19,33 +18,33 @@ export const addSection = (section) => {
   return {
     type: AddSections,
     payload: section,
-  }
-}
+  };
+};
 
 export const addSectionSetting = (obj) => {
-return {
-    type: AddSectionSetting, 
+  return {
+    type: AddSectionSetting,
     payload: obj,
-  }
-}
+  };
+};
 
 export const activeSection = (id) => {
   return {
-    type: ActiveSection, 
+    type: ActiveSection,
     payload: id,
-  }
-}
+  };
+};
 
 export const addLayers = (layer) => {
   return {
     type: AddLayers,
     payload: layer,
-  }
-}
+  };
+};
 
 export const addSetting = (setting) => {
   return {
     type: AddSetting,
     payload: setting,
-  }
-}
+  };
+};

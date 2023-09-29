@@ -19,14 +19,14 @@ const style = {
   boxShadow: 24,
 };
 
-function ComponentModal({ open, setOpen }) {
+function ComponentModal({ open, setOpen, setOpenSnackbar, setMessage }) {
   const dispatch = useDispatch();
-  const [openSnackbar, setOpenSnackbar] = useState(false);
   const activeId = useSelector((state) => state.build.activeSection);
 
   const handleAddComponent = (item, id) => {
     dispatch(addLayers(item, id));
     setOpenSnackbar(true);
+    setMessage("New Component Added!");
   };
 
   return (
@@ -71,12 +71,6 @@ function ComponentModal({ open, setOpen }) {
           })}
         </Grid>
       </Box>
-      <SnackBar
-        openSnackbar={openSnackbar}
-        setOpenSnackbar={setOpenSnackbar}
-        message={"Component Added!"}
-        type={"success"}
-      />
     </Modal>
   );
 }
