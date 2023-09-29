@@ -97,7 +97,7 @@ function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                 </Drawer>
             </Card>
             )
-        case "Button":
+        case "button":
             return (
                 <Card className="page-builder-layer-card" key={layer.id}>
                 <Typography variant="h7">
@@ -115,7 +115,7 @@ function resolver(layer, drawer, setDrawer, setOpenSnackbar, setMessage, setSnac
                 </Drawer>
             </Card>
             )
-            case "Accordion":
+            case "accordion":
             return (
                 <Card className="page-builder-layer-card" key={layer.id}>
                 <Typography variant="h7">
